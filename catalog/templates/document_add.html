@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h3>Добавление нового документа (функция <b>document_add</b>)</h3>
+    <p style="color: red">{{ error }}</p>
+    <form method="post" action="document_add.html">
+        {% csrf_token %}
+        <p>
+            <label for="id_date_issue">Дата документа:</label>
+            <input type="date" name="date_issue" required id="id_date_issue">
+            <span class="helptext">дата издания документа</span>
+        </p>
+        <p>
+            <label for="id_doc_number">Номер документа:</label>
+            <input type="text" name="doc_number" maxlength="30" required id="id_doc_number">
+            <span class="helptext">Номер документа</span>
+        </p>
+{#        <p>#}
+{#            <label for="id_place_issue">Место издания:</label>#}
+{#            <select name="place_issue" required id="id_place_issue">#}
+{#        </p>#}
+        <p>
+            <input type="submit" value="Опубликовать" />
+        </p>
+    </form>
+{% endblock %}

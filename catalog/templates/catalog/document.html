@@ -1,0 +1,35 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+  <p style="text-align: center;">шаблон: document.html</p>
+  <br>
+  <p style="text-align: center;">ПРОКУРАТУРА РОССИЙСКОЙ ФЕДЕРАЦИИ</p>
+  <p style="text-align: center;">ПРОКУРАТУРА АЛТАЙСКОГО КРАЯ</p>
+  <p style="text-align: center;">{{ document.doc_type }}</p>
+  <table style="height: 18px; width: 100%; border-collapse: collapse;">
+    <tbody>
+      <tr style="height: 18px;">
+        <td style="width: 50%; height: 18px;">{{ document.date_issue }}</td>
+        <td style="width: 50%; height: 18px; text-align: right;">{{ document.doc_number }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="text-align: center;">{{ document.place_issue }}</p>
+  <p style="text-align: center;"><strong>{{ document.doc_title }}</strong></p>
+  <p style="text-align: justify;">{{ document.preamble }}</p>
+  <p style="text-align: center;">Р А С П О Р Я Ж А Ю С Ь:</p>
+  <p style="text-align: center;">{{ docversion.text }}</p>
+  <table style="width: 100%; border-collapse: collapse;" border="0">
+    <tbody>
+      <tr>
+        <td style="width: 50%;">должность</td>
+        <td style="width: 50%;">&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="width: 50%;">чин</td>
+        <td style="width: 50%; text-align: right;">фио</td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

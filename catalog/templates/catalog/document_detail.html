@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+{#{% load bbcode_tags %}#}
+
+{% block docversion %}
+    Редакции документа:
+    {% for docversion in docversions %}
+        <li>
+        <a href="">{{ docversion.date_version }}</a>
+        </li>
+    {% endfor %}
+{% endblock docversion %}
+
+
+{% block content %}
+    <p style="text-align: center; color: red">шаблон: document_detail.html</p>
+    <p style="text-align: center; color: red"><b>(на основе класса)</b></p>
+    <br>
+    <p style="text-align: center;">ПРОКУРАТУРА РОССИЙСКОЙ ФЕДЕРАЦИИ</p>
+    <p style="text-align: center;">ПРОКУРАТУРА АЛТАЙСКОГО КРАЯ</p>
+    <p style="text-align: center;">{{ document.doc_type }}</p>
+    <table style="height: 18px; width: 100%; border-collapse: collapse;">
+        <tbody>
+        <tr style="height: 18px;">
+            <td style="width: 50%; height: 18px;">{{ document.date_issue }}</td>
+            <td style="width: 50%; height: 18px; text-align: right;">{{ document.doc_number }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p style="text-align: center;">{{ document.place_issue }}</p>
+    <p style="text-align: center;"><strong>{{ document.doc_title }}</strong></p>
+    <p style="text-align: center;">редакция от {{ date_start }}</p>
+        <p style="text-align: justify;">{{ document.preamble }}</p>
+    <p style="text-align: center;">императив:</p>
+    {{text|safe}}
+    <table style="width: 100%; border-collapse: collapse;" border="0">
+        <tbody>
+        <tr>
+            <td style="width: 50%;">{{ document.position }}</td>
+            <td style="width: 50%;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="width: 50%;">{{ document.rank }}</td>
+            <td style="width: 50%; text-align: right;">{{ document.fullname }}</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}
