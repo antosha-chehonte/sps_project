@@ -18,6 +18,22 @@ class Place(models.Model):
         verbose_name_plural = "Места издания документов"
 
 
+class DocStatus(models.Model):
+    doc_status = models.CharField(
+        max_length=30,
+        verbose_name="Статус документа",
+        help_text="Сведения о текущем статусе документа"
+    )
+
+    def __str__(self):
+        return self.doc_status
+
+    class Meta:
+        # ordering = ('doc_status',)
+        verbose_name = "Статус документа"
+        verbose_name_plural = "Сведения о текущем статусе документа"
+
+
 class DocType(models.Model):
     doc_type = models.CharField(
         max_length=30,
@@ -69,6 +85,13 @@ class Document(models.Model):
         verbose_name="Тип документа",
         help_text="Тип документа",
         on_delete=models.PROTECT
+    )
+
+    doc_status = models.ForeignKey(
+        DocStatus,
+        verbose_name="Статус документа",
+        help_text="Сведения о текущем статусе документа",
+        on_delete=models.PROTECT,
     )
 
     DOC_STATUS = (

@@ -14,5 +14,5 @@ class DocForm(ModelForm):
             'fullname',
             'place_issue',
             'doc_type',
-            'status',
+            'doc_status',
         )

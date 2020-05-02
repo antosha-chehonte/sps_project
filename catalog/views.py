@@ -110,7 +110,9 @@ def document_add(request):
 def document_list(request):
     doc_list = Document.objects.all().order_by('-date_issue')
     # todo: получить сведения о статусе документа, преобразовать их в имя статуса из переменной DOC_STATUS
-    doc_status = "status"
+    status_list = dict(d='Действующий', n='Недействующий', с='Изменяющий')
+
+    doc_status = 'status'
 
     return render(
         request,
