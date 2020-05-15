@@ -1,7 +1,8 @@
 from django.views import generic
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
+from django.http import HttpResponse
 from django.db.models import Max
 from .models import Document, DocVersion, DocType
 from .forms import DocForm
@@ -110,7 +111,7 @@ def document_add(request):
 def document_list(request):
     doc_list = Document.objects.all().order_by('-date_issue')
     # todo: получить сведения о статусе документа, преобразовать их в имя статуса из переменной DOC_STATUS
-    status_list = dict(d='Действующий', n='Недействующий', с='Изменяющий')
+    # status_list = dict(d='Действующий', n='Недействующий', с='Изменяющий')
 
     doc_status = 'status'
 
@@ -121,9 +122,20 @@ def document_list(request):
     )
 
 
+def search(request):
+
+    if 'q' in request.GET and request.GET['q']:
+        q = request.GET['q']
+        docs = Document.objects.filter(doc_type=q)
+        return render_to_response('search_result.html',
+                                  {'doc_list': docs, 'query': q})
+    else:
+        return HttpResponse('Please submit a search term.')
+
+
 class DocumentListView(generic.ListView):
     model = Document
-    paginate_by = 10
+    paginate_by = 0
 
 
 class DocCreateView(CreateView):

@@ -9,7 +9,7 @@
         <li>
         <a href="{% url 'document' pk=doc.pk %}">
             {{ doc.doc_type }} от {{ doc.date_issue }} №{{ doc.doc_number }}
-            ({{ doc.status }})</a>
+            ({{ doc.doc_status }})</a>
         </li>
     {% endfor %}
     </ul>

@@ -94,20 +94,6 @@ class Document(models.Model):
         on_delete=models.PROTECT,
     )
 
-    DOC_STATUS = (
-        ('d', 'Действующий'),
-        ('n', 'Недействующий'),
-        ('с', 'Изменяющий'),
-    )
-
-    status = models.CharField(
-        max_length=1,
-        choices=DOC_STATUS,
-        default='d',
-        verbose_name="Статус документа",
-        help_text='Статус документа'
-    )
-
     class Meta:
         ordering = ('-date_issue',)
         verbose_name = "Основной документ"

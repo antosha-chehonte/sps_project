@@ -14,6 +14,8 @@ urlpatterns = [
     url('document/(?P<pk>[0-9])/(?P<doc_version_id>[0-9])', views.document, name='document_version'),
     url(r'^addnew/$', views.document_add, name='document_add'),   # добавление документа
     url(r'^test/(?P<pk>[0-9])/(?P<doc_version_last_id>[0-9])/$', views.test, name='test'),   # тестовый шаблон
+    url(r'^search/$', views.search, name='search'),   # тестовый шаблон
+
 
     # urls на основе классов
     url(r'^add/$', DocCreateView.as_view(), name='add'),  # добавление документа
