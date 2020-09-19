@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Document, Place, DocType, Control, DocVersion
+from .models import Document, Place, DocType, Control, DocVersion, News, Category
 
 
 class DocVersionInline(admin.TabularInline):
@@ -16,3 +16,6 @@ admin.site.register(DocType)
 admin.site.register(Document, DocumentAdmin)
 admin.site.register(Control)
 admin.site.register(DocVersion)
+admin.site.register(News)
+admin.site.register(Category)
+

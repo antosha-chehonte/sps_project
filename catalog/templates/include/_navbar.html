@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'index' %}">СПС "Документы"</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'docs_list' %}">Список документов</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'document_add' %}">Добавить документ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'test' pk=1 doc_version_last_id=2 %}">Тестовый шаблон</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'news' %}">Новости</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/">Админ</a>
+            </li>
+        </ul>
+    </div>
+</nav>

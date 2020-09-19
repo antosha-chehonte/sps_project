@@ -1,13 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h2>СПС "Документы"</h2>
-    <p>Справочно-правовая система <em>"Документы"</em> прокуратуры Алтайского края.</p>
-    <br>
-    <form action="search" method="get">
-        <input type="text" name="q" size="80">
-        <input type="submit" value="Найти документ">
-    </form>
+    <h5>Справочно-правовая система <em>"Документы"</em> прокуратуры Алтайского края.</h5>
     <br>
     <p>Количество доступных документов: {{ num_docs }}</p>
 {% endblock %}

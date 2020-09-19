@@ -1,8 +1,8 @@
 {% extends "base_generic.html" %}
 {#{% load bbcode_tags %}#}
 
-{% block docversion %}
-    Редакции документа:
+{% block sidebar %}
+    <h5>Редакции документа:</h5>
     {% for doc_version in doc_versions_all %}
         <li>
             <a href="{% url 'document_version' pk=doc_version.document_id doc_version_id=doc_version.id %}">
@@ -10,12 +10,11 @@
             </a> id={{ doc_version.id }}
         </li>
     {% endfor %}
-{% endblock docversion %}
+{% endblock sidebar %}
 
 
 {% block content %}
-    <br>
-    Служебная информация
+    <h5>Служебная информация</h5>
     <p style="color: red">шаблон: document.html <b>(на основе функции)</b><br>
         переменная test: <b>{{ test }}</b><br>
         переменная pk: <b>{{ pk }}</b><br>

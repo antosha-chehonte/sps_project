@@ -1,11 +1,6 @@
-from django.views import generic
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
-from django.views.generic.edit import CreateView
-from django.urls import reverse_lazy
 from django.http import HttpResponse
-from django.db.models import Max
-from .models import Document, DocVersion, DocType
-from .forms import DocForm
+from .models import Document, DocVersion, DocType, News
 
 
 def test(request,
@@ -65,7 +60,7 @@ def document(request,
 
     return render(
         request,
-        'document.html',
+        'document_detail.html',
         context=dict(document=doc,
                      doc_versions_all=doc_versions_all,
                      doc_version=doc_version,
@@ -108,16 +103,20 @@ def document_add(request):
         return redirect('/documents')
 
 
-def document_list(request):
-    doc_list = Document.objects.all().order_by('-date_issue')
-    # todo: получить сведения о статусе документа, преобразовать их в имя статуса из переменной DOC_STATUS
-    # status_list = dict(d='Действующий', n='Недействующий', с='Изменяющий')
+def document_list(request, search_query=None):
+
+    if search_query:
+        doc_list = Document.objects.filter(doc_type__icontains=search_query).order_by('-date_issue')
+    else:
+        doc_list = Document.objects.all().order_by('-date_issue')
+        # todo: получить сведения о статусе документа, преобразовать их в имя статуса из переменной DOC_STATUS
+        # status_list = dict(d='Действующий', n='Недействующий', с='Изменяющий')
 
     doc_status = 'status'
 
     return render(
         request,
-        'docs_list.html',
+        'documents_list.html',
         context={'doc_list': doc_list, 'doc_status': doc_status},
     )
 
@@ -133,25 +132,10 @@ def search(request):
         return HttpResponse('Please submit a search term.')
 
 
-class DocumentListView(generic.ListView):
-    model = Document
-    paginate_by = 0
-
-
-class DocCreateView(CreateView):
-    template_name = 'catalog/document_create.html'
-    form_class = DocForm
-    success_url = reverse_lazy('docs')
-
-
-class DocumentDetailView(generic.DetailView):
-    model = Document
-
-    def get_context_data(self, **kwargs):
-        context = super(DocumentDetailView, self).get_context_data(**kwargs)
-        context['text'] = context['object'].docversion_set.first().text
-        context['date_start'] = context['object'].docversion_set.first().date_version
-        # todo: присвоить переменной imperative значение императива из модели doctype
-        # context['imperative'] = context['object'].doctype_set.first().doc_imperative
-        return context
-
+def news(request):
+    news_list = News.objects.all()
+    context = {
+        'news_list': news_list,
+        'title': 'Список новостей'
+    }
+    return render(request, template_name='news.html', context=context)

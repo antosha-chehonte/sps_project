@@ -3,7 +3,12 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h3>Список документов (на основе функции <b>document_list</b>)</h3>
+    <h5>Список документов (на основе функции <b>document_list</b>)</h5>
+        <form action="{% url 'docs_list' %}" method="get">
+        <input type="text" name="search_query" size="80">
+        <input type="submit" value="Найти документ">
+    </form>
+    <br>
     <ul>
     {% for doc in doc_list %}
         <li>

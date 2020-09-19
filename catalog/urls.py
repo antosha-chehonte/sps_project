@@ -1,8 +1,6 @@
 from django.conf.urls import url
 from django.urls import path
 from . import views
-from .views import DocCreateView
-
 
 urlpatterns = [
     # индекс
@@ -15,11 +13,9 @@ urlpatterns = [
     url(r'^addnew/$', views.document_add, name='document_add'),   # добавление документа
     url(r'^test/(?P<pk>[0-9])/(?P<doc_version_last_id>[0-9])/$', views.test, name='test'),   # тестовый шаблон
     url(r'^search/$', views.search, name='search'),   # тестовый шаблон
+    url(r'^news/$', views.news, name='news'),   # тестовый шаблон
 
-
-    # urls на основе классов
-    url(r'^add/$', DocCreateView.as_view(), name='add'),  # добавление документа
-    url(r'^docs/$', views.DocumentListView.as_view(), name='docs'),  # список документов
-    url(r'^doc/(?P<pk>\d+)$', views.DocumentDetailView.as_view(), name='document_detail'),  # конкретный документ
  ]
+
+
 
