@@ -139,7 +139,16 @@ def news(request, category_id=None):
         categories = Category.objects.all()
     context = {
         'news_list': news_list,
-        'title': 'Список новостей',
         'categories': categories,
     }
     return render(request, template_name='news/news.html', context=context)
+
+
+def news_view(request, news_id):
+    news_list = News.objects.get(pk=news_id)
+    categories = Category.objects.all()
+    context = {
+        'news_list': news_list,
+        'categories': categories,
+    }
+    return render(request, template_name='news/news_view.html', context=context)

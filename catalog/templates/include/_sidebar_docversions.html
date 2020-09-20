@@ -1,5 +1,5 @@
 <div class="col-md-12">
-    <h5>Редакции</h5>
+    <h6>Редакции</h6>
     <div class="list-group list-group-flush">
         {% for doc_version in doc_versions_all %}
             <a href="{% url 'document_version' pk=doc_version.document_id doc_version_id=doc_version.id %}"

@@ -13,9 +13,9 @@ urlpatterns = [
     url(r'^addnew/$', views.document_add, name='document_add'),   # добавление документа
     url(r'^test/(?P<pk>[0-9])/(?P<doc_version_last_id>[0-9])/$', views.test, name='test'),   # тестовый шаблон
     url(r'^search/$', views.search, name='search'),   # поиск
-    url(r'^news/$', views.news, name='news'),   # новости
+    path('news/', views.news, name='news'),   # новости
     path('news/category/<int:category_id>', views.news, name='news_category'),   # новости категории
-
+    path('news/<int:news_id>', views.news_view, name='news_view'),   # конкретная новость
  ]
 
 

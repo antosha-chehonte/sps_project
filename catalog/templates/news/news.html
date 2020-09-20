@@ -1,30 +1,33 @@
 {% extends "catalog/base_generic.html" %}
 
+{% block title %}
+    <title>Новости :: СПС "Документы"</title>
+{% endblock %}
+
 {% block sidebar %}
     {% include 'include/_sidebar_categories.html' %}
 {% endblock %}
 
 {% block content %}
-    <h5>{{ title }}</h5>
+    <h6>Все объявления</h6>
     {% for item in news_list %}
         <div class="card">
-            <div class="card-header">Категория: {{ item.category }}
+            <div class="card-header">
+                <a href="{% url 'news_category' category_id=item.category_id %}">
+                    {{ item.category }}
+                </a>
+                - {{ item.created_at|timesince }} назад
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{ item.title }}</h5>
                 <p class="card-text">
-                <p>{{ item.content|truncatewords:40 }}</p>
-                <p>{{ item.created_at|timesince }} назад</p>
-                <a href="" class="btn btn-primary">Подробнее ...</a>
+                <p>{{ item.content|linebreaks|truncatewords:40 }}</p>
+
+                {% if item.content|wordcount > 40 %}
+                    <a href="{% url 'news_view' news_id=item.pk %}" class="btn btn-primary">Подробнее ...</a>
+                {% endif %}
             </div>
         </div>
         <br>
     {% endfor %}
-
-    <div>
-
-    </div>
-    <hr>
-
-
 {% endblock %}

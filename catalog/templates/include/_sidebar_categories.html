@@ -1,8 +1,8 @@
 <div class="col-md-12">
-    <h5>Категории новостей</h5>
+    <h6>Направления</h6>
     <div class="list-group list-group-flush">
         <a href="{% url 'news' %}"
-           class="list-group-item list-group-item-action"><b>Все новости</b>
+           class="list-group-item list-group-item-action"><b>Все направления</b>
         </a>
         {% for item in categories %}
             <a href="{% url 'news_category' category_id=item.pk %}"

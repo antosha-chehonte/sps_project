@@ -11,11 +11,15 @@ class DocumentAdmin(admin.ModelAdmin):
     inlines = [DocVersionInline]
 
 
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category')
+
+
 admin.site.register(Place)
 admin.site.register(DocType)
 admin.site.register(Document, DocumentAdmin)
 admin.site.register(Control)
 admin.site.register(DocVersion)
-admin.site.register(News)
+admin.site.register(News, NewsAdmin)
 admin.site.register(Category)
 

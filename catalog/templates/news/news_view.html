@@ -1,0 +1,29 @@
+{% extends "catalog/base_generic.html" %}
+
+{% block title %}
+    <title>Новость :: СПС "Документы"</title>
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'include/_sidebar_categories.html' %}
+{% endblock %}
+
+{% block content %}
+    <h6>Подробнее:</h6>
+    <div class="card">
+        <div class="card-header">Категория: {{ news_list.category }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ news_list.title }}</h5>
+            <p class="card-text">
+            <p>{{ news_list.content|linebreaks }}</p>
+            <p>{{ news_list.created_at|timesince }} назад</p>
+            <a href="{% url 'news' %}" class="btn btn-primary">
+                К списку всех новостей
+            </a>
+            <a href="{% url 'news_category' category_id=news_list.category_id %}" class="btn btn-secondary">
+                все новости этого направления
+            </a>
+        </div>
+    </div>
+{% endblock %}

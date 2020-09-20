@@ -172,18 +172,18 @@ class News(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = 'Новость'
-        verbose_name_plural = 'Новости'
+        verbose_name = 'Объявление'
+        verbose_name_plural = 'Объявления'
         ordering = ['-created_at']
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=150, db_index=True, verbose_name='Наименование категории')
+    title = models.CharField(max_length=150, db_index=True, verbose_name='Наименование направления работы')
 
     def __str__(self):
         return self.title
 
     class Meta:
-        verbose_name = 'Категория новости'
-        verbose_name_plural = 'Категории новостей'
+        verbose_name = 'Направление работы'
+        verbose_name_plural = 'Направления работы'
         ordering = ['title']
