@@ -2,22 +2,24 @@
 {#{% load bbcode_tags %}#}
 
 {% block sidebar %}
-{% include 'include/_sidebar_docversions.html' %}
+    {% include 'include/_sidebar_docversions.html' %}
 {% endblock sidebar %}
 
 {% block content %}
-    <h5>Служебная информация</h5>
-    <p style="color: red">шаблон: document.html <b>(на основе функции)</b><br>
+    <h6>Служебная информация</h6>
+    <div style="color: red">
+        шаблон: document.html <b>(на основе функции)</b><br>
         переменная test: <b>{{ test }}</b><br>
         переменная pk: <b>{{ pk }}</b><br>
         переменная doc_actual_version_id: <b>{{ doc_actual_version_id }}</b><br>
         переменная doc_version_id: <b>{{ doc_version_id }}</b><br>
         переменная doc_version.date_version: <b>{{ doc_version.date_version }}</b><br>
-    </p>
-
-    <p style="text-align: center;">ПРОКУРАТУРА РОССИЙСКОЙ ФЕДЕРАЦИИ</p>
-    <p style="text-align: center;">ПРОКУРАТУРА АЛТАЙСКОГО КРАЯ</p>
-    <p style="text-align: center;">{{ document.doc_type }}</p>
+    </div>
+    <div style="text-align: center;">
+        ПРОКУРАТУРА РОССИЙСКОЙ ФЕДЕРАЦИИ<br>
+        ПРОКУРАТУРА АЛТАЙСКОГО КРАЯ
+        <h5 class="mt-4 mb-4">{{ document.doc_type|upper }}</h5>
+    </div>
     <table style="height: 18px; width: 100%; border-collapse: collapse;">
         <tbody>
         <tr style="height: 18px;">
@@ -26,26 +28,31 @@
         </tr>
         </tbody>
     </table>
-    <p style="text-align: center;">{{ document.place_issue }}</p>
-    <p style="text-align: center;"><strong>{{ document.doc_title|safe }}</strong></p>
-    <p style="text-align: center">
+    <div style="text-align: center;">
+        {{ document.place_issue }}
+    </div>
+    <div style="text-align: center;" class="mt-4">
+    <strong>{{ document.doc_title|safe }}</strong>
 
-    <i>
-    {% if doc_actual_version_id == doc_version_id %}
-        (действующая редакция от {{ doc_version.date_version }})
-    {% else %}
-        <b style="color: red">(недействующая редакция от {{ doc_version.date_version }})</b><br>
-        <a href="{% url 'document_version' pk=doc_version.document_id doc_version_id=doc_actual_version_id %}">
-            перейти в действующую
-        </a>
+    </div>
+    <div style="text-align: center;">
+        <i>
+            {% if doc_actual_version_id == doc_version_id %}
+                (действующая редакция от {{ doc_version.date_version }})
+            {% else %}
+                <b style="color: red">(недействующая редакция от {{ doc_version.date_version }})</b><br>
+                <a href="{% url 'document_version' pk=doc_version.document_id doc_version_id=doc_actual_version_id %}">
+                    перейти в действующую
+                </a>
 
-    {% endif %}
-    </i>
+            {% endif %}
+        </i>
+    </div>
     </p>
     <p style="text-align: justify;">{{ doc_version.preamble|safe }}</p>
     <p style="text-align: center;">{{ imperative }}:</p>
 
-    {{doc_version.text|safe}}
+    {{ doc_version.text|safe }}
     <br>
     <table style="width: 100%; border-collapse: collapse;" border="0">
         <tbody>

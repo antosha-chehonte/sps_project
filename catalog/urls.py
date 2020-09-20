@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^test/(?P<pk>[0-9])/(?P<doc_version_last_id>[0-9])/$', views.test, name='test'),   # тестовый шаблон
     url(r'^search/$', views.search, name='search'),   # поиск
     url(r'^news/$', views.news, name='news'),   # новости
-    path('news/category/<int:category_id>', views.get_category, name='news_category'),   # новости категории
+    path('news/category/<int:category_id>', views.news, name='news_category'),   # новости категории
 
  ]
 
