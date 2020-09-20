@@ -1,0 +1,11 @@
+{% load documents_tags %}
+<div class="col-md-12">
+    <h5>Виды документов</h5>
+    <div class="list-group list-group-flush">
+        {% get_list_doc_types as list_doc_types %}
+        {% for item in list_doc_types %}
+            <a href="" class="list-group-item list-group-item-action">{{ item }}</a>
+        {% endfor %}
+    </div>
+</div>
+

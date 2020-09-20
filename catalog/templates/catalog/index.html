@@ -1,7 +1,9 @@
-{% extends "base_generic.html" %}
+{% extends "catalog/base_generic.html" %}
 
 {% block content %}
     <h5>Справочно-правовая система <em>"Документы"</em> прокуратуры Алтайского края.</h5>
+    <br>
+    {% include "include/_document_search.html" %}
     <br>
     <p>Количество доступных документов: {{ num_docs }}</p>
 {% endblock %}

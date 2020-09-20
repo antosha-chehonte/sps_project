@@ -1,17 +1,9 @@
-{% extends "base_generic.html" %}
+{% extends "catalog/base_generic.html" %}
 {#{% load bbcode_tags %}#}
 
 {% block sidebar %}
-    <h5>Редакции документа:</h5>
-    {% for doc_version in doc_versions_all %}
-        <li>
-            <a href="{% url 'document_version' pk=doc_version.document_id doc_version_id=doc_version.id %}">
-                {{ doc_version.date_version }}
-            </a> id={{ doc_version.id }}
-        </li>
-    {% endfor %}
+{% include 'include/_sidebar_docversions.html' %}
 {% endblock sidebar %}
-
 
 {% block content %}
     <h5>Служебная информация</h5>

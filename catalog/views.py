@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.http import HttpResponse
-from .models import Document, DocVersion, DocType, News
+from .models import Document, DocVersion, DocType, News, Category
 
 
 def test(request,
@@ -12,7 +12,7 @@ def test(request,
 
     return render(
         request,
-        'test.html',
+        'catalog/test.html',
         context=dict(
             pk=pk,
             doc_version_last_id=doc_version_last_id
@@ -26,7 +26,7 @@ def index(request):
 
     return render(
         request,
-        'index.html',
+        'catalog/index.html',
         context={'num_docs': num_docs},
     )
 
@@ -60,7 +60,7 @@ def document(request,
 
     return render(
         request,
-        'document_detail.html',
+        'catalog/document_detail.html',
         context=dict(document=doc,
                      doc_versions_all=doc_versions_all,
                      doc_version=doc_version,
@@ -76,7 +76,7 @@ def document(request,
 
 def document_add(request):
     if request.method == 'GET':
-        return render(request, 'document_add.html')
+        return render(request, 'catalog/document_add.html')
     else:
         date_issue = request.POST['date_issue'],
         doc_number = request.POST['doc_number'],
@@ -116,7 +116,7 @@ def document_list(request, search_query=None):
 
     return render(
         request,
-        'documents_list.html',
+        'catalog/documents_list.html',
         context={'doc_list': doc_list, 'doc_status': doc_status},
     )
 
@@ -126,7 +126,7 @@ def search(request):
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
         docs = Document.objects.filter(doc_type=q)
-        return render_to_response('search_result.html',
+        return render_to_response('catalog/search_result.html',
                                   {'doc_list': docs, 'query': q})
     else:
         return HttpResponse('Please submit a search term.')
@@ -134,8 +134,23 @@ def search(request):
 
 def news(request):
     news_list = News.objects.all()
+    categories = Category.objects.all()
     context = {
         'news_list': news_list,
-        'title': 'Список новостей'
+        'title': 'Список новостей',
+        'categories': categories,
     }
-    return render(request, template_name='news.html', context=context)
+    return render(request, template_name='news/news.html', context=context)
+
+
+def get_category(request, category_id):
+    news_list = News.objects.filter(category_id=category_id)
+    categories = Category.objects.all()
+    category = Category.objects.get(pk=category_id)
+    context = {
+        'news_list': news_list,
+        'title': 'Список новостей',
+        'categories': categories,
+        'category': category,
+    }
+    return render(request, template_name='news/news_category.html', context=context)

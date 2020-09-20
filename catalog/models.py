@@ -103,7 +103,7 @@ class Document(models.Model):
         return '%s от %s №%s' % (self.doc_type, self.date_issue, self.doc_number)
 
     def get_absolute_url(self):
-        return reverse('document_detail', args=(self.pk,))
+        return reverse('document', args=(self.pk,))
 
 
 class Control(models.Model):
@@ -155,8 +155,8 @@ class DocVersion(models.Model):
                 self.date_version
                 )
 
-    def get_absolute_url(self):
-        return reverse('catalog_docversion_detail', args=(self.pk,))
+    # def get_absolute_url(self):
+    #     return reverse('catalog_docversion_detail', args=(self.pk,))
 
 
 class News(models.Model):
@@ -184,6 +184,6 @@ class Category(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        verbose_name = 'Категория новости'
+        verbose_name_plural = 'Категории новостей'
         ordering = ['title']

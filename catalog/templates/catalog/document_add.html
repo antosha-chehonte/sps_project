@@ -1,9 +1,9 @@
-{% extends "base_generic.html" %}
+{% extends "catalog/base_generic.html" %}
 
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h3>Добавление нового документа (функция <b>document_add</b>)</h3>
+    <h5>Добавление нового документа (функция <b>document_add</b>)</h5>
     <p style="color: red">{{ error }}</p>
     <form method="post" action="document_add.html">
         {% csrf_token %}

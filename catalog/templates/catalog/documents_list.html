@@ -1,0 +1,24 @@
+{# Список документов (на основе функции document_list) #}
+
+{% extends "catalog/base_generic.html" %}
+
+{% block sidebar %}
+{% include 'include/_sidebar_doctype.html' %}
+{% endblock %}
+
+{% block content %}
+    <h5>Список документов (на основе функции <b>document_list</b>)</h5>
+    <br>
+    {% include "include/_document_search.html" %}
+    <br>
+    <ul>
+        {% for doc in doc_list %}
+            <li>
+                <a href="{% url 'document' pk=doc.pk %}">
+                    {{ doc.doc_type }} от {{ doc.date_issue }} №{{ doc.doc_number }}
+                    ({{ doc.doc_status }})</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
